@@ -1,0 +1,105 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7B748E"/>
+      <stop offset="0.18" stop-color="#F2C8B7"/>
+      <stop offset="0.34" stop-color="#FFF7F0"/>
+      <stop offset="0.54" stop-color="#F06E22"/>
+      <stop offset="0.78" stop-color="#21182F"/>
+      <stop offset="1" stop-color="#101528"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 250) rotate(18) scale(450 330)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.52" stop-color="#FFF5EF"/>
+      <stop offset="0.78" stop-color="#FFD4B7" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#FFD4B7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="water" x1="370" y1="558" x2="370" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2A25A" stop-opacity="0.35"/>
+      <stop offset="0.26" stop-color="#4C3E4D" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#20273C"/>
+    </linearGradient>
+    <linearGradient id="carBody" x1="238" y1="0" x2="238" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#222D46"/>
+      <stop offset="0.55" stop-color="#55617A"/>
+      <stop offset="1" stop-color="#22283A"/>
+    </linearGradient>
+    <linearGradient id="carGlass" x1="275" y1="0" x2="275" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#4B5B77"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="#110F22" fill-opacity="0.12"/>
+  <ellipse cx="410" cy="286" rx="470" ry="368" fill="url(#sun)"/>
+
+  <path d="M717 -34C799 78 834 250 824 426C815 599 741 792 594 969" stroke="#FF9A25" stroke-width="28" stroke-opacity="0.92"/>
+  <path d="M749 -38C819 72 851 248 841 427C832 594 766 781 636 951" stroke="#FF8F1F" stroke-width="12" stroke-opacity="0.56"/>
+
+  <path d="M0 570H1600V900H0V570Z" fill="url(#water)"/>
+  <path d="M980 590C1067 575 1158 571 1252 577C1333 582 1415 600 1500 612V900H980V590Z" fill="#1A2030" fill-opacity="0.55"/>
+  <path d="M0 596C70 566 141 555 215 562C285 568 342 582 408 604V900H0V596Z" fill="#5F6677" fill-opacity="0.3"/>
+
+  <g opacity="0.33" fill="#525B73">
+    <rect x="9" y="631" width="26" height="112"/>
+    <rect x="38" y="618" width="32" height="125"/>
+    <rect x="76" y="603" width="29" height="140"/>
+    <rect x="108" y="612" width="25" height="131"/>
+    <rect x="139" y="628" width="35" height="115"/>
+    <rect x="180" y="635" width="24" height="108"/>
+    <rect x="210" y="614" width="22" height="129"/>
+  </g>
+
+  <g opacity="0.24" fill="#4B536B">
+    <rect x="1060" y="680" width="22" height="80"/>
+    <rect x="1090" y="666" width="18" height="94"/>
+    <rect x="1116" y="652" width="30" height="108"/>
+    <rect x="1154" y="664" width="22" height="96"/>
+    <rect x="1187" y="688" width="46" height="72"/>
+  </g>
+
+  <g opacity="0.9">
+    <rect x="160" y="92" width="325" height="260" fill="#FFFFFF" fill-opacity="0.08" stroke="#7C7386" stroke-opacity="0.38"/>
+    <text x="182" y="182" fill="#213E97" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="800">SELF DRIVE</text>
+    <text x="182" y="250" fill="#F35A17" font-family="Arial, Helvetica, sans-serif" font-size="74" font-weight="800">CARS FOR</text>
+    <text x="182" y="322" fill="#F35A17" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="800">RENTAL</text>
+    <text x="187" y="390" fill="#2F313A" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="500">Luxurious Cars at Reasonable Prices</text>
+  </g>
+
+  <rect x="186" y="433" width="194" height="45" rx="10" fill="#F26722"/>
+  <text x="282" y="463" text-anchor="middle" fill="#FFF4E9" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Book Today At</text>
+
+  <g fill="#2F313A" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">
+    <circle cx="204" cy="518" r="17" stroke="#2F313A" stroke-width="4"/>
+    <path d="M199 509L206 516L211 525" stroke="#2F313A" stroke-width="4" stroke-linecap="round"/>
+    <text x="235" y="531">9169 47 1234</text>
+    <circle cx="204" cy="565" r="17" stroke="#2F313A" stroke-width="4"/>
+    <path d="M199 556L206 563L211 572" stroke="#2F313A" stroke-width="4" stroke-linecap="round"/>
+    <text x="235" y="578">7075 799 851</text>
+  </g>
+
+  <g transform="translate(230 500)">
+    <ellipse cx="255" cy="235" rx="255" ry="22" fill="#182032" fill-opacity="0.28"/>
+    <circle cx="120" cy="204" r="42" fill="#111827"/>
+    <circle cx="120" cy="204" r="28" fill="#D5DBE5"/>
+    <circle cx="120" cy="204" r="14" fill="#1A2232"/>
+    <circle cx="388" cy="204" r="42" fill="#111827"/>
+    <circle cx="388" cy="204" r="28" fill="#D5DBE5"/>
+    <circle cx="388" cy="204" r="14" fill="#1A2232"/>
+    <path d="M17 174L30 135C42 102 69 80 120 72L219 58C250 28 290 18 348 20L405 24C434 26 456 40 474 68L505 115C518 135 523 156 520 174L517 188C515 198 507 204 496 204H470C463 165 433 145 389 145C345 145 317 167 312 204H194C188 164 160 145 119 145C79 145 48 165 39 204H23C11 204 4 196 6 184L17 174Z" fill="url(#carBody)" stroke="#7A8394" stroke-width="3"/>
+    <path d="M100 81H390C417 81 439 93 455 114L466 129H68L80 102C86 89 93 81 100 81Z" fill="url(#carGlass)" stroke="#93A0B6" stroke-width="2"/>
+    <path d="M231 70L247 70L259 129H221L231 70Z" fill="#28334A"/>
+    <path d="M17 174H518" stroke="#D4DBE8" stroke-width="7" stroke-linecap="round" opacity="0.78"/>
+    <path d="M16 182H516" stroke="#131A2B" stroke-width="4" stroke-linecap="round"/>
+    <rect x="75" y="126" width="38" height="14" rx="7" fill="#E8EDF5"/>
+    <rect x="397" y="118" width="56" height="13" rx="6.5" fill="#EEC8B3"/>
+    <rect x="278" y="214" width="93" height="16" rx="6" fill="#2F384A"/>
+  </g>
+
+  <g fill="#F2F5FC" font-family="Arial, Helvetica, sans-serif">
+    <text x="74" y="824" font-size="22">Rent Available Cars</text>
+    <text x="74" y="874" font-size="26" font-style="italic" font-weight="700">SCORPIO / INNOVA / CRETA / 20 XLB ERTIGA FRONX</text>
+    <text x="266" y="920" font-size="22">Mangalagiri  .  Vijayawada</text>
+  </g>
+</svg>
