@@ -46,21 +46,24 @@ public class AuthController {
     }
 
     @PostMapping("/send-otp")
-    public String sendOtp(@RequestBody AuthRequest request) {
+public ResponseEntity<?> sendOtp(@RequestBody AuthRequest request) {
+    try {
         if (request.getEmail() == null || request.getEmail().isBlank()) {
-            throw new RuntimeException("Email is required");
+            return ResponseEntity.badRequest().body("Email is required");
         }
 
         String email = request.getEmail().trim().toLowerCase();
+
         if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            throw new RuntimeException("Invalid email format");
+            return ResponseEntity.badRequest().body("Invalid email format");
         }
 
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new RuntimeException("Email already exists");
+            return ResponseEntity.badRequest().body("Email already exists");
         }
 
         String otpCode = String.format("%06d", new Random().nextInt(999999));
+
         Otp otp = new Otp();
         otp.setEmail(email);
         otp.setCode(otpCode);
@@ -68,8 +71,13 @@ public class AuthController {
         otpRepository.save(otp);
 
         emailService.sendOtp(email, otpCode);
-        return "OTP Sent";
+
+        return ResponseEntity.ok("OTP Sent");
+
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body("Error: " + e.getMessage());
     }
+}
 
     @PostMapping("/verify-otp")
     public String verifyOtp(@RequestBody AuthRequest request) {
@@ -122,17 +130,24 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    @Transactional
-    public String forgotPassword(@RequestBody AuthRequest request) {
+@Transactional
+public ResponseEntity<?> forgotPassword(@RequestBody AuthRequest request) {
+    try {
         if (request.getEmail() == null || request.getEmail().isBlank()) {
-            throw new RuntimeException("Email is required");
+            return ResponseEntity.badRequest().body("Email is required");
         }
 
         String email = request.getEmail().trim().toLowerCase();
-        userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // 🔥 FIX: handle user not found properly
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
 
         String otpCode = String.format("%06d", new Random().nextInt(999999));
+
         otpRepository.deleteByEmail(email);
 
         Otp otp = new Otp();
@@ -141,29 +156,41 @@ public class AuthController {
         otp.setExpiry(LocalDateTime.now().plusMinutes(5));
         otpRepository.save(otp);
 
-        emailService.sendEmail(email, "CARHUB Reset Password OTP", "Your OTP is: " + otpCode + "\n\nThis code expires in 5 minutes.");
-        return "OTP Sent";
+        emailService.sendEmail(
+                email,
+                "CARHUB Reset Password OTP",
+                "Your OTP is: " + otpCode + "\n\nThis code expires in 5 minutes."
+        );
+
+        return ResponseEntity.ok("OTP Sent Successfully");
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.badRequest().body("Failed: " + e.getMessage());
     }
+}
 
     @PostMapping("/reset-password")
-    @Transactional
-    public String resetPassword(@RequestBody AuthRequest request) {
+@Transactional
+public ResponseEntity<?> resetPassword(@RequestBody AuthRequest request) {
+    try {
         if (request.getEmail() == null || request.getEmail().isBlank() ||
                 request.getOtp() == null || request.getOtp().isBlank() ||
                 request.getPassword() == null || request.getPassword().isBlank()) {
-            throw new RuntimeException("Email, OTP and new password are required");
+            return ResponseEntity.badRequest().body("Email, OTP and new password required");
         }
 
         String email = request.getEmail().trim().toLowerCase();
+
         Otp otp = otpRepository.findFirstByEmailOrderByExpiryDesc(email)
                 .orElseThrow(() -> new RuntimeException("OTP not found"));
 
         if (!otp.getCode().equals(request.getOtp().trim())) {
-            throw new RuntimeException("Invalid OTP");
+            return ResponseEntity.badRequest().body("Invalid OTP");
         }
 
         if (otp.getExpiry().isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("OTP expired");
+            return ResponseEntity.badRequest().body("OTP expired");
         }
 
         User user = userRepository.findByEmail(email)
@@ -171,11 +198,15 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
+
         otpRepository.deleteByEmail(email);
 
-        return "Password Reset Successful";
-    }
+        return ResponseEntity.ok("Password Reset Successful");
 
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+    }
+}
     @PostMapping("/api/admin/invite")
     public String inviteAdmin(@RequestParam String email, Authentication auth) {
         String adminEmail = auth.getName();
@@ -201,7 +232,7 @@ public class AuthController {
         message.setTo(adminEmail);
         message.setSubject("CARHUB Admin Approval Needed");
         message.setText("A request to add new admin " + email + " is pending. Confirm: " +
-                "http://localhost:8080/api/admin/confirm-new-admin?token=" + token);
+                "https://project-carhub-main.onrender.com/api/admin/confirm-new-admin?token=" + token);
         mailSender.send(message);
 
         return "Invite sent to current admin";
