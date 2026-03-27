@@ -18,7 +18,14 @@ public class SecurityConfig {
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
     http
-        .cors(cors -> {})
+        .cors(cors -> cors.configurationSource(request -> {
+    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+    corsConfig.setAllowedOrigins(java.util.List.of("https://project-carhub-main.vercel.app"));
+    corsConfig.setAllowedMethods(java.util.List.of("GET","POST","PUT","DELETE","OPTIONS"));
+    corsConfig.setAllowedHeaders(java.util.List.of("*"));
+    corsConfig.setAllowCredentials(true);
+    return corsConfig;
+}))
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
 
