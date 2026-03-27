@@ -77,7 +77,7 @@ function AdminBookings() {
     <div key={b.id} className="card" style={{ padding: 14 }}>
       <div style={{ height: 160, overflow: "hidden", borderRadius: 10, marginBottom: 12 }}>
         <img
-          src={b.car.imageUrl ? `https://carhub-backend-production-39e4.up.railway.app${b.car.imageUrl}` : "https://via.placeholder.com/400x220?text=No+Image"}
+          src={b.car.imageUrl ? `https://project-carhub-main.onrender.com${b.car.imageUrl}` : "https://via.placeholder.com/400x220?text=No+Image"}
           alt={`${b.car.brand} ${b.car.model}`}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />

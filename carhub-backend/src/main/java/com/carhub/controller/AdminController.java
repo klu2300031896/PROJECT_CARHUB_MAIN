@@ -63,7 +63,7 @@ public class AdminController {
         req.setExpiryTime(LocalDateTime.now().plusMinutes(10));
         adminRequestRepository.save(req);
 
-        String link = "http://localhost:8080/api/admin/confirm-admin?token=" + token;
+        String link = "https://project-carhub-main.onrender.com/api/admin/confirm-admin?token=" + token;
         emailService.sendEmail(email, "CARHUB Admin Approval", "Click below to become admin:\n" + link);
 
         return "Approval email sent";

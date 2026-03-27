@@ -233,7 +233,7 @@ function Admin() {
             {cars.map((car) => (
               <div className="card" key={car.id} style={{ padding: 12 }}>
                 <div style={{ height: 150, overflow: "hidden", borderRadius: 8, marginBottom: 10 }}>
-                  <img src={car.imageUrl ? `https://carhub-backend-production-39e4.up.railway.app${car.imageUrl}` : "https://via.placeholder.com/250x150?text=No+Image"} alt="car" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={car.imageUrl ? `https://project-carhub-main.onrender.com${car.imageUrl}` : "https://via.placeholder.com/250x150?text=No+Image"} alt="car" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <h3 style={{ margin: "0 0 4px" }}>{car.brand} {car.model}</h3>
                 <p style={{ margin: "2px 0", color: "var(--muted)" }}>ID: {car.id}</p>

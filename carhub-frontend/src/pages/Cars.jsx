@@ -134,7 +134,7 @@ function Cars() {
             {cars.map((car) => (
               <div key={car.id} className="card" style={{ padding: 12 }}>
                 <div style={{ height: 160, overflow: "hidden", borderRadius: 8, marginBottom: 10 }}>
-                  <img src={car.imageUrl ? `https://carhub-backend-production-39e4.up.railway.app${car.imageUrl}` : "https://via.placeholder.com/400x200?text=No+Image"} alt="car" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={car.imageUrl ? `https://project-carhub-main.onrender.com${car.imageUrl}` : "https://via.placeholder.com/400x200?text=No+Image"} alt="car" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <h3 style={{ margin: "0 0 6px" }}>{car.brand} {car.model}</h3>
                 <p style={{ margin: "0 0 6px", color: "var(--muted)" }}>ID: {car.id}</p>
