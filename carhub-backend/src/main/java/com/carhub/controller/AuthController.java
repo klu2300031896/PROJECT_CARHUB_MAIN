@@ -1,5 +1,6 @@
 package com.carhub.controller;
 
+import org.springframework.http.ResponseEntity;
 import com.carhub.model.*;
 import com.carhub.repository.AdminInviteRepository;
 import com.carhub.repository.OtpRepository;
@@ -13,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.util.Random;
