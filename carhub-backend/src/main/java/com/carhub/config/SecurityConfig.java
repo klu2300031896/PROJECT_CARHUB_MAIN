@@ -15,36 +15,34 @@ public class SecurityConfig {
     private JwtAuthenticationFilter jwtFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-                .cors(cors -> {})
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
+    http
+        .cors(cors -> {})
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
 
-.requestMatchers(
-"/v3/api-docs/**",
-"/swagger-ui/**",
-"/swagger-ui.html"
-).permitAll()
+            // ✅ ALLOW PREFLIGHT (VERY IMPORTANT)
+            .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
 
-.requestMatchers("/uploads/**").permitAll()
+            // existing rules
+            .requestMatchers(
+                "/v3/api-docs/**",
+                "/swagger-ui/**",
+                "/swagger-ui.html"
+            ).permitAll()
 
-.requestMatchers("/api/auth/**").permitAll()
+            .requestMatchers("/uploads/**").permitAll()
+            .requestMatchers("/api/auth/**").permitAll()
+            .requestMatchers("/api/cars/**").permitAll()
+            .requestMatchers("/api/admin/confirm-new-admin").permitAll()
+            .requestMatchers("/api/admin/**").hasRole("ADMIN")
+            .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
 
-.requestMatchers("/api/cars/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-.requestMatchers("/api/admin/confirm-new-admin").permitAll()
-
-.requestMatchers("/api/admin/**").hasRole("ADMIN")
-
-.requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
-
-.anyRequest().authenticated()
-
-)
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-    }
+    return http.build();
+}
 }
