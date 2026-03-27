@@ -28,7 +28,7 @@ function Register() {
       setShowOtp(true);
     } catch (err) {
       console.error(err);
-      Swal.fire({ icon: "error", title: "Error", text: err.response?.data || "Could not send OTP", confirmButtonColor: "#6739b7" });
+      Swal.fire({ icon: "error", title: "Error", text: err.response?.data?.message || err.response?.data || "Could not send OTP", confirmButtonColor: "#6739b7" });
     }
   };
 
